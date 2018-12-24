@@ -1,0 +1,8 @@
+version: '3'
+services:
+  balancer:
+    build: ./packages/balancer
+    ports:
+      - "80:80"
+  universal-app:
+    build: ./packages/universal-app
