@@ -1,0 +1,128 @@
+@import '~compass-mixins/lib/compass/css3';
+
+h1 {
+  text-align: center;
+  font-weight: 100;
+  font-size: 28px;
+  margin-top: 30px;
+}
+
+mat-toolbar mat-icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+:host {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+mat-sidenav-container {
+  background-image: url(/assets/cube-background.jpg);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  @media screen and (max-width: 599px) {
+    top: 0;
+  }
+}
+
+.cube {
+  height: 90%;
+  width: 10em;
+  position: absolute;
+  left:0;
+  right:0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  perspective: 1000px;
+  font-size: 100px;
+  @media screen and (max-width: 1024px) {
+    font-size: 9.6vw;
+    height: 95%;
+  }
+  @media screen and (max-width: 599px) {
+    height: 98%;
+    font-size: 9.5vw;
+  }
+  .dark-screen {
+    @include border-radius(4px);
+    background: #000;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: opacity .1s ease-out;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.is-loading {
+    .side {
+      animation: pulse 2s infinite;
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1) translateZ(-5em);
+        }
+        50% {
+          transform: scale(1.01) translateZ(-5em);
+        }
+      }
+    }
+    .dark-screen {
+      animation: pulseDarkScreen 2s infinite;
+      @keyframes pulseDarkScreen {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.01);
+        }
+      }
+      opacity: .3;
+      transition: opacity .3s ease-out;
+    }
+  }
+}
+
+.side {
+  transform-style: preserve-3d;
+  transform: translateZ(-5em);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+:host ::ng-deep .side > :not(router-outlet) {
+  display: block;
+  color:#fff;
+  background-color: rgb(44, 27, 124);
+  background-image: url(/assets/cube-background.jpg);
+  background-size: cover;
+  @include border-radius(4px);
+  @include box-shadow(0 0 6px rgb(38, 9, 104));
+  position: absolute;
+  transform: rotateY(0deg) translateZ(5em);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
