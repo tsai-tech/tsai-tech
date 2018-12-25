@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened="false">Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+      <div class="cube" [ngClass]="{
+        'is-loading': isLoading | async
+      }">
+        <div class="side" [@routeAnimations]="prepareRoute(outlet)">
+          <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+        <div class="dark-screen"><mat-spinner></mat-spinner></div>
+      </div>
+    </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
