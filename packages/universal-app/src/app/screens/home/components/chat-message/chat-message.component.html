@@ -1,0 +1,26 @@
+<div
+  class="message"
+  [ngClass]="{
+    bot: sender === Sender.Bot,
+    user: sender === Sender.User,
+    alone: type === Type.Alone,
+    first: type === Type.First,
+    between: type === Type.Between,
+    last: type === Type.Last,
+    loading: type === Type.Loading,
+    welcome: welcome
+  }">
+  <div class="avatar"></div>
+  <div class="content-wrapper">
+    <div class="message-info">{{name}} <span>{{time}}</span></div>
+    <div class="content">
+      <ng-content *ngIf="type !== Type.Loading; else loading"></ng-content>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <span></span>
+  <span></span>
+  <span></span>
+</ng-template>

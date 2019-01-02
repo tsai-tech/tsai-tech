@@ -1,8 +1,16 @@
 <div class="wrapper">
-  <mat-sidenav-container class="example-container">
+  <mat-sidenav-container
+    class="example-container"
+    [ngClass]="{
+      pulse: backgroundPulse,
+      loaded: enterAnimationState === 'visible'
+    }"
+    [ngStyle]="{
+      backgroundImage: backgroundUrl ? 'url(' + backgroundUrl + ')' : null
+    }">
     <mat-sidenav mode="side" opened="false">Sidenav content</mat-sidenav>
     <mat-sidenav-content>
-      <div class="cube" [ngClass]="{
+      <div [@enterAnimation]="enterAnimationState" class="cube" [ngClass]="{
         'is-loading': isLoading | async
       }">
         <div class="side" [@routeAnimations]="prepareRoute(outlet)">

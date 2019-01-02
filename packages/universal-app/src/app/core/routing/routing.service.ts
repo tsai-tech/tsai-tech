@@ -38,7 +38,7 @@ export class RoutingService {
           event instanceof NavigationCancel ||
           event instanceof NavigationError
         ) {
-          this._endRoutingTimer = setTimeout(() => this._routingStatus.next(RoutingStatus.Ended), 500);
+          this._endRoutingTimer = setTimeout(() => this._routingStatus.next(RoutingStatus.Ended), 600);
         }
       });
   }

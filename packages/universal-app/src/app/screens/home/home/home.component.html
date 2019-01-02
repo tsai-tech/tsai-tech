@@ -1,10 +1,34 @@
+<app-header></app-header>
+
 <section class="home">
-  <nav>
-    <a routerLink="/graphql-and-websockets" mat-raised-button>
-      <mat-icon aria-label="Go to graphql and websockets page">arrow_back</mat-icon> GraphQL and Websockets
-    </a>
-    <a routerLink="/dnd-and-pwa" mat-raised-button>
-      Drug'n'Drop and PWA <mat-icon aria-label="Go to Drug'n'Drop and PWA page">arrow_forward</mat-icon>
-    </a>
-  </nav>
+  <main>
+    <app-chat-message welcome="true" [sender]="Sender.Bot" [type]="Type.First">
+      Hello there!
+    </app-chat-message>
+
+    <app-chat-message [sender]="Sender.Bot" [type]="Type.Last">
+      My name is Mikhail Tsai. I'm a full stack web developer
+    </app-chat-message>
+
+    <app-chat-message [sender]="Sender.Bot" [type]="Type.Alone">
+      My name is Mikhail Tsai and I'm a full stack web developer<br /><br />
+      <span style="font-weight: 300">(honestly, just a bot 😉)</span><br /><br />
+      <a routerLink="/data-visualization" mat-raised-button color="accent">Data Visualization (d3.js)</a>
+      <br /><br />
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, excepturi provident animi quidem ab iste rerum. Necessitatibus modi illum nobis eligendi dolores quis culpa quaerat fugiat nostrum. Nemo, sint laboriosam.
+    </app-chat-message>
+
+    <app-chat-message [sender]="Sender.Bot" [type]="Type.Loading"></app-chat-message>
+
+    <mat-card class="question" *ngIf="false">
+      <mat-card-content>Chat commands:</mat-card-content>
+      <mat-card-content class="button-wrapper">
+        <a routerLink="/dnd-and-pwa" mat-raised-button color="primary">Introduce yourself</a>
+        <a routerLink="/dnd-and-pwa" mat-raised-button color="primary">REST, GraphQL and Websockets</a>
+        <a routerLink="/dnd-and-pwa" mat-raised-button color="primary">Progressive Web App</a>
+        <a routerLink="/dnd-and-pwa" mat-raised-button color="primary">Microservices</a>
+        <a routerLink="/dnd-and-pwa" mat-raised-button color="primary">Contacts</a>
+      </mat-card-content>
+    </mat-card>
+  </main>
 </section>

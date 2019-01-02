@@ -1,1 +1,12 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+* {
+  font-family: Montserrat, sans-serif;
+  text-rendering: geometricPrecision;
+  box-sizing: border-box;
+}
+
+.mat-button-wrapper {
+  font-size: 12px;
+  font-weight: 600;
+}

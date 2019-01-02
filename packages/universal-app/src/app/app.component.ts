@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, NavigationCancel, NavigationEnd, NavigationError } from '@angular/router';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 
 import { RoutingService } from './core/routing/routing.service';
+import { isPlatformBrowser } from '@angular/common';
 
 // const STATE_KEY_APP = makeStateKey('app');
 
@@ -11,13 +10,28 @@ import { RoutingService } from './core/routing/routing.service';
   template: '<app-layout></app-layout>'
 })
 export class AppComponent implements OnInit {
+  pwaInstaller: any;
+
   constructor(
-    private routingService: RoutingService
-  ) {
+    @Inject(PLATFORM_ID) private platformId,
+    private routingService: RoutingService,
+  ) {}
+
+  private initOnlyForBrowser(): void {
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      this.pwaInstaller = event;
+      this.pwaInstaller.prompt();
+    });
   }
 
   ngOnInit(): void {
     this.routingService.init();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.initOnlyForBrowser();
+    }
+
     // this.title = this.state.get(STATE_KEY_APP, this.DEFAULT_TITLE);
     // console.log('after 1-th get:', this.state.get(STATE_KEY_APP, '----'));
 

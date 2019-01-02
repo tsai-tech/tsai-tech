@@ -1,0 +1,95 @@
+.message {
+  display: flex;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background: url(/assets/photos/mikhail-tsai.jpg) no-repeat 50% 50%;
+  background-position: top;
+  background-size: 115%;
+  flex-basis: 48px;
+}
+
+.content-wrapper {
+  margin-left: 16px;
+  flex: 1;
+  max-width: 500px;
+}
+
+.message-info {
+  font-size: 12px;
+  font-weight: 200;
+  span {
+    letter-spacing: 0.5px;
+  }
+}
+
+.content {
+  background: #eef0ff;
+  margin-top: 7px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+  padding: 13.5px 18px 13.5px 18px;
+  color: #28282c;
+  border-radius: 15px;
+  border-top-left-radius: 0px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.loading {
+  .content span {
+    $duration: 1.3s;
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 6px;
+    background-color: #c3c3cd;
+    transform: translateY(1px);
+    animation: loading $duration linear infinite;
+    &:not(:last-child) {
+      margin-right: 7px;
+    }
+    &:nth-child(2) {
+      animation-delay: $duration * 0.75 / 3;
+    }
+    &:nth-child(3) {
+      animation-delay: $duration * 0.75 / 3 * 2;
+    }
+    @keyframes loading {
+      0%, 75%, 100% {
+        background-color: #c3c3cd;
+      }
+      37.5% {
+        background-color: #818181;
+      }
+    }
+  }
+}
+
+.message {
+  &.first, &.alone, &.loading {
+    &:not(.welcome) {
+      margin-top: 22px;
+    }
+  }
+  &.first, &.between {
+    .content {
+      border-bottom-left-radius: 0px;
+    }
+  }
+  &.between, &.last {
+    .avatar {
+      visibility: hidden;
+      opacity: 0;
+    }
+    .message-info {
+      display: none;
+    }
+    .content {
+      margin-top: 2px;
+    }
+  }
+}

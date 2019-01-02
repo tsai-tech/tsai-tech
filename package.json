@@ -1,6 +1,11 @@
 {
-  "name": "tsai-tech",
+  "name": "tsaitech",
   "private": true,
+  "scripts": {
+    "start": "lerna run start --scope @tsaitech/universal-app --parallel",
+    "docker:start": "npm run universal-app:build && docker-compose up --build",
+    "universal-app:build": "cd ./packages/universal-app && npm run build:ssr && cd ../.."
+  },
   "devDependencies": {
     "lerna": "^3.8.0"
   }

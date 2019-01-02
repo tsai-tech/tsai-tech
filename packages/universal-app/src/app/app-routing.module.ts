@@ -33,6 +33,15 @@ const routes: Routes = [
         data: {
           animation: 'RightPage'
         }
+      },
+      {
+        path: 'data-visualization',
+        loadChildren: './screens/data-visualization/data-visualization.module#DataVisualizationModule',
+        canActivate: [RoutingGuard],
+        canDeactivate: [RoutingGuard],
+        data: {
+          animation: 'RightPage'
+        }
       }
     ]
   }
