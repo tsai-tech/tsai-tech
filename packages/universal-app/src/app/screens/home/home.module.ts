@@ -6,9 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { FluentModule } from 'src/app/shared/fluent/fluent.module';
+
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
+
+import { ScrollingService } from './services/scrolling.service';
+import { ScenarioService } from './services/scenario.service';
+
 
 @NgModule({
   declarations: [HomeComponent, HeaderComponent, ChatMessageComponent],
@@ -18,12 +24,14 @@ import { ChatMessageComponent } from './components/chat-message/chat-message.com
     MatIconModule,
     MatCardModule,
     MatDividerModule,
+    FluentModule,
     RouterModule.forChild([
       {
         path: '',
         component: HomeComponent
       }
     ])
-  ]
+  ],
+  providers: [ScrollingService, ScenarioService]
 })
 export class HomeModule { }

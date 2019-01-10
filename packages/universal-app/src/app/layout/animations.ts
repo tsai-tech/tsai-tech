@@ -1,7 +1,7 @@
 import { trigger, transition, style, query, group, animate, animateChild, state } from '@angular/animations';
-import { scaleBand } from 'd3';
 
-const ANIMATE = '600ms ease-out';
+export const ANIMATION_DURATION = 600;
+const ANIMATE = `${ANIMATION_DURATION}ms ease-out`;
 const TRANSLATE_Z = '5em';
 
 export const layoutAnimations = [

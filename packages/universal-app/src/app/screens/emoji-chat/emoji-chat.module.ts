@@ -6,10 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 
-import { DataVisualizationComponent } from './data-visualization/data-visualization.component';
+import { EmojiChatComponent } from './emoji-chat/emoji-chat.component';
 
 @NgModule({
-  declarations: [DataVisualizationComponent],
+  declarations: [EmojiChatComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -18,9 +18,9 @@ import { DataVisualizationComponent } from './data-visualization/data-visualizat
     RouterModule.forChild([
       {
         path: '',
-        component: DataVisualizationComponent
+        component: EmojiChatComponent
       }
     ])
   ]
 })
-export class DataVisualizationModule { }
+export class EmojiChatModule { }

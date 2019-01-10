@@ -1,0 +1,32 @@
+<header>
+  <a routerLink="/"
+    color="accent"
+    mat-raised-button
+    matTooltip="Go to home page"
+    [matTooltipPosition]="'right'">
+    <mat-icon aria-label="Go to home page">arrow_back</mat-icon>
+  </a>
+  <div class="title">
+    <h2>
+      Emoji Chat
+    </h2>
+    <small>canvas, websockets (socket.io)</small>
+  </div>
+  <div class="edit-emoji">
+    😀
+    <a routerLink="/"
+      mat-raised-button
+      matTooltip="Edit your Emoji"
+      [matTooltipPosition]="'below'">
+      Edit your Emoji
+    </a>
+  </div>
+</header>
+
+<section #section (click)="focusInput()">
+  <canvas #chat></canvas>
+</section>
+
+<footer>
+  <input #input type="text"> <button>Send</button>
+</footer>

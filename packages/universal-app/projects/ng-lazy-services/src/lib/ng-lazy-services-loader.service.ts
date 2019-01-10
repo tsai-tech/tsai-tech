@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken, Injector, NgModuleFactoryLoader, NgModuleFactory, Inject } from '@angular/core';
+import { Injectable, InjectionToken, Injector, NgModuleFactoryLoader, NgModuleFactory, Inject, NgModule } from '@angular/core';
 import { Observable, from, throwError } from 'rxjs';
 
 import { NgLazyServicesConfigToken, NgLazyServicesConfig } from './ng-lazy-services.module';
@@ -29,6 +29,7 @@ export class NgLazyServicesLoaderService {
   }
 
   private moduleLoadMiddleware<T>(moduleFactory: NgModuleFactory<T>): T {
+    console.log(moduleFactory);
     const moduleRef = moduleFactory.create(this.injector);
     const facadeService = moduleRef.injector.get(FACADE_SERVICE) as unknown;
 

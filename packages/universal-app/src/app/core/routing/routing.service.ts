@@ -6,6 +6,8 @@ import {
 import { Observable, BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
+import { ANIMATION_DURATION } from './../../layout/animations';
+
 export enum RoutingStatus { Started, Guarded, Ended, Loading }
 
 @Injectable({
@@ -38,7 +40,7 @@ export class RoutingService {
           event instanceof NavigationCancel ||
           event instanceof NavigationError
         ) {
-          this._endRoutingTimer = setTimeout(() => this._routingStatus.next(RoutingStatus.Ended), 600);
+          this._endRoutingTimer = setTimeout(() => this._routingStatus.next(RoutingStatus.Ended), ANIMATION_DURATION);
         }
       });
   }
