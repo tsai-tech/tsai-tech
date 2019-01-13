@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-mat-sidenav-container {
+.container {
   position: absolute;
   left: 0;
   right: 0;
@@ -19,7 +19,7 @@ mat-sidenav-container {
   bottom: 0;
   opacity: 0;
   background: rgba(19, 21, 31, 0.85) url(/assets/blured-background.jpg) 50% 50% no-repeat;
-  transition: background-image 3s ease-in, opacity .1s linear;
+  transition: background-image 1s ease-in, opacity .1s linear;
   &.loaded {
     opacity: 1;
   }
@@ -28,7 +28,7 @@ mat-sidenav-container {
   }
 }
 
-mat-sidenav-content {
+.content {
   overflow: hidden;
 }
 
@@ -135,7 +135,7 @@ mat-sidenav-content {
   display: flex;
   flex-direction: column;
   background: rgba(19, 21, 31, 0.85) url(/assets/blured-background.jpg) 50% 50% no-repeat;
-  section {
+  ng-scrollbar {
     background: rgba(20, 22, 22, 0.6);
     flex: 1;
   }

@@ -1,22 +1,50 @@
 <app-header></app-header>
 
-<section #section class="home">
-  <main>
-    <app-chat-message
-      *ngFor="let item of history; trackBy: trackById"
-      [welcome]="item.welcome"
-      [sender]="item.sender"
-      [type]="item.type"
-    >
-      {{ item.content }}
-    </app-chat-message>
+<ng-scrollbar
+  [autoUpdate]="false"
+  style="height: 100%; width: 100%;"
+>
+  <section #section class="home">
+    <main>
+      <ng-container *ngFor="let item of history; index as index; trackBy: trackById">
+        <app-chat-message
+          [welcome]="item.welcome"
+          [messageForNextGroup]="item.messageForNextGroup"
+          [loading]="item.loading"
+          [sender]="item.sender"
+          [type]="item.type"
+          [date]="item.date"
+          [isCommands]="item.contentType === ContentType.Commands"
+          #questionWrapper
+          *ngIf="index + 1 > history.length - 15"
+        >
+          <ng-container *ngIf="item.contentType !== ContentType.Commands">
+            <ng-container *ngTemplateOutlet="contentBlock; context: item"></ng-container>
+          </ng-container>
 
-    <app-chat-message [sender]="Sender.Bot" [type]="Type.Loading"></app-chat-message>
+          <ng-container *ngIf="item.contentType === ContentType.Commands">
+            <app-f-button [wrapper]="getWrapper(questionWrapper)" [subscribeTo]="scroll$"
+                          (click)="onCommand(Commands.FavoriteTechnologyStack, item)">
+              {{ textsOfCommands[Commands.FavoriteTechnologyStack] }}
+            </app-f-button>
+            <app-f-button [wrapper]="getWrapper(questionWrapper)" [subscribeTo]="scroll$"
+                          (click)="onCommand(Commands.GetInTouch, item)">
+              {{ textsOfCommands[Commands.GetInTouch] }}
+            </app-f-button>
+            <app-f-button [wrapper]="getWrapper(questionWrapper)" [subscribeTo]="scroll$"
+                          (click)="onCommand(Commands.ComingSoon, item)">
+              {{ textsOfCommands[Commands.ComingSoon] }}
+            </app-f-button>
+          </ng-container>
+        </app-chat-message>
+      </ng-container>
+    </main>
+  </section>
+</ng-scrollbar>
 
-    <app-chat-message #questionWrapper [sender]="Sender.User" [type]="Type.Question">
-      <app-f-button [wrapper]="getWrapper(questionWrapper)" routerLink="/emoji-chat">
-        Favorite technology stack
-      </app-f-button>
-    </app-chat-message>
-  </main>
-</section>
+<ng-template #contentBlock let-contentType="contentType" let-content="content">
+  <ng-component *ngIf="contentType === ContentType.HTML" [innerHTML]="content"></ng-component>
+  <ng-container *ngIf="contentType === ContentType.Component">
+    <ng-container *ngComponentOutlet="content"></ng-container>
+  </ng-container>
+</ng-template>

@@ -8,6 +8,18 @@ export enum Type {
   First,
   Between,
   Last,
-  Loading,
   Question
+}
+
+export enum ContentType {
+  HTML,
+  Component,
+  Commands
+}
+
+export enum Commands {
+  Welcome = 'Welcome',
+  FavoriteTechnologyStack = 'FavoriteTechnologyStack',
+  GetInTouch = 'GetInTouch',
+  ComingSoon = 'ComingSoon'
 }

@@ -1,8 +1,8 @@
 {
-  "name": "universal-app",
-  "short_name": "universal-app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Mikhail Tsai - full stack web developer",
+  "short_name": "Mikhail Tsai",
+  "theme_color": "#020224",
+  "background_color": "#020224",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",

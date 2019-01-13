@@ -1,10 +1,18 @@
-import { Sender, Type } from './enums';
+import { Sender, Type, ContentType } from './enums';
+
 
 export interface History {
-  id: number;
-  welcome: boolean;
   sender: Sender;
-  type: Type;
-  date: Date;
-  content: any;
+
+  loading?: boolean;
+  contentType?: ContentType;
+  content?: any;
+  id?: number;
+  type?: Type;
+  welcome?: boolean;
+  date?: Date;
+  messageForNextGroup?: boolean;
+  timeout?: number;
+  startTimeout?: number;
+  autoNext?: true;
 }

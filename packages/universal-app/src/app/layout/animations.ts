@@ -1,4 +1,4 @@
-import { trigger, transition, style, query, group, animate, animateChild, state } from '@angular/animations';
+import { trigger, transition, style, query, group, animate, animateChild } from '@angular/animations';
 
 export const ANIMATION_DURATION = 600;
 const ANIMATE = `${ANIMATION_DURATION}ms ease-out`;

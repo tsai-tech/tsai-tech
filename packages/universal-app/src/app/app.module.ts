@@ -1,7 +1,6 @@
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { NgLazyServicesModule } from 'ng-lazy-services';
@@ -22,7 +21,6 @@ import { LayoutComponent } from './layout/layout.component';
     BrowserModule.withServerTransition({ appId: 'app-id' }),
     NgLazyServicesModule.forRoot(DynamicModules),
     BrowserTransferStateModule,
-    MatSidenavModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
     HttpClientModule,

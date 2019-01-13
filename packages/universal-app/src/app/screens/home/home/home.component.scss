@@ -2,6 +2,7 @@ a mat-icon {
   font-size: 22px;
 }
 
+
 nav > h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -11,8 +12,9 @@ nav > h1 {
 
 main {
   padding: 0px 13px 13px 13px;
+  min-height: 100%;
 
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 440px) {
     padding: 0px;
   }
 }

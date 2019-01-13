@@ -1,6 +1,6 @@
 <div class="wrapper">
-  <mat-sidenav-container
-    class="example-container"
+  <div
+    class="container"
     [ngClass]="{
       pulse: backgroundPulse,
       loaded: enterAnimationState === 'visible'
@@ -8,8 +8,7 @@
     [ngStyle]="{
       backgroundImage: backgroundUrl ? 'url(' + backgroundUrl + ')' : null
     }">
-    <mat-sidenav mode="side" opened="false">Sidenav content</mat-sidenav>
-    <mat-sidenav-content>
+    <div class="content">
       <div [@enterAnimation]="enterAnimationState" class="cube" [ngClass]="{
         'is-loading': isLoading | async
       }">
@@ -18,6 +17,6 @@
         </div>
         <div class="dark-screen"><mat-spinner></mat-spinner></div>
       </div>
-    </mat-sidenav-content>
-    </mat-sidenav-container>
+    </div>
+  </div>
 </div>

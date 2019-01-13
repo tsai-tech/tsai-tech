@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, Input, AfterViewInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, Input, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { ANIMATION_DURATION } from './../../../layout/animations';
@@ -15,6 +16,7 @@ export class FButtonComponent implements OnInit, AfterViewInit {
 
   COMMON_LIGHT_SIZE = 514;
 
+  @Input() subscribeTo: Observable<any>;
   @Input() wrapper: HTMLElement;
   @ViewChild('button') button: ElementRef<HTMLElement>;
 
@@ -31,7 +33,8 @@ export class FButtonComponent implements OnInit, AfterViewInit {
   top = 0;
 
   constructor(
-    private mouse: MouseService
+    private mouse: MouseService,
+    @Inject(PLATFORM_ID) private platformId,
   ) { }
 
   ngAfterViewInit(): void {
@@ -44,38 +47,50 @@ export class FButtonComponent implements OnInit, AfterViewInit {
         .subscribe(backgroundLight => this.backgroundLight = backgroundLight)
     );
 
+    if (this.subscribeTo) {
+      this.subscriptions.push(
+        this.subscribeTo.subscribe(() => this.updateRect())
+      );
+    }
+
     setTimeout(() => this.updateRect(), ANIMATION_DURATION);
   }
 
   updateLightPosition() {
-    const { offsetLeft, offsetTop } = this.button.nativeElement;
-    const wrapperComputed = window.getComputedStyle(this.wrapper, null);
-    const paddingLeft = Number.parseFloat(wrapperComputed.getPropertyValue('padding-left'));
-    const paddingTop = Number.parseFloat(wrapperComputed.getPropertyValue('padding-top'));
-    const {
-      clientHeight: wrapperHeight,
-      clientWidth: wrapperWidth,
-      offsetTop: wrapperTop,
-      offsetLeft: wrapperLeft
-    } = this.wrapper;
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        const { offsetLeft, offsetTop } = this.button.nativeElement;
 
-    setTimeout(() => {
-      this.commonLight = [
-        Math.round(wrapperWidth / 2) - 24 - (offsetLeft - (wrapperLeft + paddingLeft)),
-        Math.round(wrapperHeight / 2) - 24 - (offsetTop - (wrapperTop + paddingTop)),
-      ];
-    }, 0);
+        const wrapperComputed = window.getComputedStyle(this.wrapper, null);
+        const paddingLeft = Number.parseFloat(wrapperComputed.getPropertyValue('padding-left'));
+        const paddingTop = Number.parseFloat(wrapperComputed.getPropertyValue('padding-top'));
+
+        const {
+          clientHeight: wrapperHeight,
+          clientWidth: wrapperWidth,
+          offsetTop: wrapperTop,
+          offsetLeft: wrapperLeft
+        } = this.wrapper;
+
+        this.commonLight = [
+          Math.round(wrapperWidth / 2) - 24 - (offsetLeft - (wrapperLeft + paddingLeft)),
+          Math.round(wrapperHeight / 2) - 24 - (offsetTop - (wrapperTop + paddingTop)),
+        ];
+      }, 0);
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   private updateRect() {
-    const { width, height, left, top } = this.button.nativeElement.getBoundingClientRect();
+    if (isPlatformBrowser(this.platformId)) {
+      const { width, height, left, top } = this.button.nativeElement.getBoundingClientRect();
 
-    this.width = width;
-    this.height = height;
-    this.left = left;
-    this.top = top;
-    this.rendered = true;
+      this.width = width;
+      this.height = height;
+      this.left = left;
+      this.top = top;
+      this.rendered = true;
+    }
   }
 
   private get backgroundLight$() {

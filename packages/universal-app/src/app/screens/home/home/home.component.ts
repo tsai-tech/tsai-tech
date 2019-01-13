@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { ScrollingService } from '../services/scrolling.service';
 import { ScenarioService } from '../services/scenario.service';
-import { Sender, Type } from '../types/enums';
+import { textsOfCommands } from './../services/scenario';
+import { Sender, Type, ContentType, Commands } from '../types/enums';
 import { History } from '../types/History';
+import { NgScrollbar } from 'ngx-scrollbar';
+import { Command } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-home',
@@ -14,16 +16,20 @@ import { History } from '../types/History';
 export class HomeComponent implements OnInit {
   readonly Sender = Sender;
   readonly Type = Type;
+  readonly ContentType = ContentType;
+  readonly Commands = Commands;
+  readonly textsOfCommands = textsOfCommands;
 
+  @ViewChild(NgScrollbar) scrollbar: NgScrollbar;
   @ViewChild('section') private section: ElementRef<HTMLElement>;
   questions: any[] = [];
 
-  getWrapper(wrapper): HTMLElement {
-    return wrapper.wrapper.nativeElement;
-  }
-
   get history(): History[] {
     return this.scenario.getHistory();
+  }
+
+  get scroll$() {
+    return this.scrolling.scroll$;
   }
 
   constructor(
@@ -31,12 +37,20 @@ export class HomeComponent implements OnInit {
     private scenario: ScenarioService
   ) { }
 
-  trackById(index, item: History): number {
-    return item.id;
+  ngOnInit() {
+    this.scrolling.init(this.scrollbar);
+    this.scenario.init();
   }
 
-  ngOnInit() {
-    this.scrolling.init(this.section);
-    this.scenario.init();
+  onCommand(command: Commands, from: History) {
+    this.scenario.command(command, from);
+  }
+
+  getWrapper(wrapper): HTMLElement {
+    return wrapper.wrapper.nativeElement;
+  }
+
+  trackById(index, item: History): number {
+    return index;
   }
 }
