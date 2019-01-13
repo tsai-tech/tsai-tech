@@ -44,12 +44,12 @@ app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
 // Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
+app.use(express.static(join(DIST_FOLDER, 'browser')));
 
-// All regular routes use the Universal engine
-app.get('*', (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
-});
+// // All regular routes use the Universal engine
+// app.get('*', (req, res) => {
+//   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+// });
 
 // Start up the Node server
 app.listen(PORT, '0.0.0.0', () => {
