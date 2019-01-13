@@ -1,0 +1,106 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/1.9ec60633b2f67d82f75c.js",
+        "/10.c45943ef7a887195bd87.js",
+        "/11.e65ed7501ff127daa060.js",
+        "/3.1991f658d8012435ef94.js",
+        "/7.d116258adeb3811b8911.js",
+        "/8.256829aaf9a033c69b47.js",
+        "/9.6caedcbfdbcc7a4d9f67.js",
+        "/common.28c34fc64d86f14da56e.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.698cd993ab6da3e571e7.js",
+        "/manifest.json",
+        "/polyfills.d79f20984641d8444fab.js",
+        "/runtime.fef4ca01b79181d526c0.js",
+        "/styles.30c784c6de1f80678ebc.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/background-light.png",
+        "/assets/background.jpg",
+        "/assets/blured-background.jpg",
+        "/assets/border-light.png",
+        "/assets/common-light.svg",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/person.svg",
+        "/assets/photos/mikhail-tsai.jpg"
+      ],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
+        "https:\\/\\/fonts\\.gstatic\\.com\\/.*"
+      ]
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/1.9ec60633b2f67d82f75c.js": "e261492667615251b43ada55e16b9180a55ec271",
+    "/10.c45943ef7a887195bd87.js": "fbc1c2059ebb451fc1f3a4bc2d8514350a41e86b",
+    "/11.e65ed7501ff127daa060.js": "2f69f92f6db548b5d213bf1c7e0e4af317b0ff4c",
+    "/3.1991f658d8012435ef94.js": "2a2dcb75a714c8e3143e1a04c5d806e6cc0b10a9",
+    "/7.d116258adeb3811b8911.js": "a28d5358513ef39d328b644670b2589a42428a72",
+    "/8.256829aaf9a033c69b47.js": "28b869201d64b95b99c83a5bd100dd764b53a108",
+    "/9.6caedcbfdbcc7a4d9f67.js": "155c0c5ba71544b7f2cc8ae6c1a4742e4a677e0a",
+    "/assets/background-light.png": "7a410ba1c765b79a5db93beb23dd578aa264d204",
+    "/assets/background.jpg": "d02fed2961a785abaf32177adde02ebde5af144c",
+    "/assets/blured-background.jpg": "b156f1e4a5393115a41df7baf2cc2fd699546b80",
+    "/assets/border-light.png": "ea3553e73652a8a7430d35e136fb5513ee0d1c97",
+    "/assets/common-light.svg": "82d00378342bae66353d5ced75bf956586085cce",
+    "/assets/icons/icon-128x128.png": "f3f41cdfd7712b403cc685e102cf488d9124cc83",
+    "/assets/icons/icon-144x144.png": "794152ee4c4ba1a795b3d49770211893bf62ddae",
+    "/assets/icons/icon-152x152.png": "5089b6301e981e3ed9d4189b4541a57d165b5aaf",
+    "/assets/icons/icon-192x192.png": "922a45f7faf5b6088395a1369c2c21ebfe48fca4",
+    "/assets/icons/icon-384x384.png": "e9fcc1da2e65c246ab03953ea0020870c8b0d66a",
+    "/assets/icons/icon-512x512.png": "60cafc17148c9c8c0852a162419a4c4106c80b02",
+    "/assets/icons/icon-72x72.png": "a316431eb22f19eceba77dd7cc72bcfa63a4996d",
+    "/assets/icons/icon-96x96.png": "9b375e71da7cd2cc6982f842ae1e837bcbb90b30",
+    "/assets/person.svg": "140b23928bfc9610348396b05a70009ea2229f03",
+    "/assets/photos/mikhail-tsai.jpg": "a3679f80c9575fec8d43afb801f97ebb2172d4ef",
+    "/common.28c34fc64d86f14da56e.js": "ba14631000866e3aa6e581b6e863dd1d0e2ebd37",
+    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/index.html": "95563437f0f1ac8fed9c191b9b5ec6dd5d084710",
+    "/main.698cd993ab6da3e571e7.js": "27e1ccca6cfdaa8e0c12c70429565ae8b52ea5e3",
+    "/manifest.json": "2f1077662810678e9c084725a64879b1b84930ef",
+    "/polyfills.d79f20984641d8444fab.js": "fd4822ca6aa04861029570c4e36b5075b1b21b3b",
+    "/runtime.fef4ca01b79181d526c0.js": "13c90793226c2e7251c99b8e95877ad03fef3661",
+    "/styles.30c784c6de1f80678ebc.css": "85203704cc4fe8e0585c9cad1d7eb90be8017b99"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
