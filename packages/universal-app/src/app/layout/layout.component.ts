@@ -32,7 +32,7 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => this.initRouterAnimations(), 0);
+    Promise.resolve().then(() => this.initRouterAnimations());
 
     if (isPlatformBrowser(this.platformId)) {
       this.preloadBackgroundImage();

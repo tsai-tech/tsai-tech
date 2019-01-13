@@ -35,8 +35,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'data-visualization',
-        loadChildren: './screens/data-visualization/data-visualization.module#DataVisualizationModule',
+        path: 'emoji-chat',
+        loadChildren: './screens/emoji-chat/emoji-chat.module#EmojiChatModule',
         canActivate: [RoutingGuard],
         canDeactivate: [RoutingGuard],
         data: {

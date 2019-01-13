@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId,
-    private routingService: RoutingService,
+    private routingService: RoutingService
   ) {}
 
   private initOnlyForBrowser(): void {
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.routingService.init();
 
     if (isPlatformBrowser(this.platformId)) {

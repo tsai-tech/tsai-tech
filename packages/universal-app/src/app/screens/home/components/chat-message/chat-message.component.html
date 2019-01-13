@@ -1,5 +1,6 @@
 <div
   class="message"
+  [@animation]
   [ngClass]="{
     bot: sender === Sender.Bot,
     user: sender === Sender.User,
@@ -7,19 +8,38 @@
     first: type === Type.First,
     between: type === Type.Between,
     last: type === Type.Last,
-    loading: type === Type.Loading,
-    welcome: welcome
+    commands: isCommands,
+    loading: loading,
+    welcome: welcome,
+    'message-for-next-group': messageForNextGroup
   }">
-  <div class="avatar"></div>
+  <div class="avatar" #avatar [ngStyle]="{
+    backgroundPosition: (sender === Sender.User && avatarBackgroundPosition)
+      ? avatarBackgroundPosition[0] + 'px ' + avatarBackgroundPosition[1] + 'px'
+      : null,
+    opacity: sender === Sender.Bot || avatarBackgroundPosition ? 1 : 0
+  }">
+    <img *ngIf="sender === Sender.User" src="/assets/person.svg" />
+  </div>
   <div class="content-wrapper">
-    <div class="message-info">{{name}} <span>{{time}}</span></div>
-    <div class="content">
-      <ng-content *ngIf="type !== Type.Loading; else loading"></ng-content>
+    <div class="message-info">{{name}} <span>{{ date | date: 'shortTime' | lowercase }}</span></div>
+    <div class="content" [ngStyle]="{
+      backgroundPosition:
+        (sender === Sender.User && contentBackgroundPosition)
+        ? contentBackgroundPosition[0] + 'px ' + contentBackgroundPosition[1] + 'px'
+        : null,
+      opacity: sender === Sender.Bot || contentBackgroundPosition ? 1 : 0
+    }"
+    [@contentAnimation]
+    >
+      <div #wrapper>
+        <ng-content *ngIf="!loading; else loadingBlock"></ng-content>
+      </div>
     </div>
   </div>
 </div>
 
-<ng-template #loading>
+<ng-template #loadingBlock>
   <span></span>
   <span></span>
   <span></span>

@@ -1,0 +1,116 @@
+button {
+  border: none;
+  background: none;
+  position: relative;
+  padding: 12px 30px;
+  color: #fff;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  outline: none;
+  overflow: hidden;
+  transition: transform .05s linear;
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  div.borders {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    & > div {
+      position: absolute;
+      overflow: hidden;
+    }
+
+    & > div:nth-child(1) {
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+    }
+    & > div:nth-child(2) {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+    }
+    & > div:nth-child(3) {
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+    }
+    & > div:nth-child(4) {
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+    }
+  }
+}
+
+.common-light {
+  position: absolute;
+  background: url(/assets/common-light.svg) 50% 50% no-repeat;
+  width: 514px;
+  height: 514px;
+  background-size: 514px;
+}
+
+.background-light {
+  position: absolute;
+  opacity: 0.2;
+  background: url(/assets/background-light.png) 50% 50% no-repeat;
+  background-size: 400px 400px;
+  width: 500px;
+  height: 500px;
+  transition: opacity .3s linear, background-size .3s linear, left .1s linear, top .1s linear;
+  @media screen and (max-width: 480px) {
+    opacity: 0;
+    background-size: 300px 300px;
+    transition: opacity .3s linear, background-size .5s linear;
+    left: calc(50% - 250px) !important;
+    top: calc(50% - 250px) !important;
+  }
+}
+
+button:active {
+  .background-light {
+    background-size: 600px 600px;
+    @media screen and (max-width: 480px) {
+      opacity: 1;
+    }
+  }
+}
+
+.border-light {
+  position: absolute;
+  background: url(/assets/border-light.png) 50% 50% no-repeat;
+  width: 170px;
+  height: 162px;
+  opacity: 0;
+  transition: opacity .2s linear, left .1s linear, top .1s linear;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+}
+
+.rendered .border-light {
+  opacity: 1;
+}
+
+:host {
+  &:hover {
+    .background-light {
+      opacity: 1;
+      @media screen and (max-width: 480px) {
+        opacity: .6;
+      }
+    }
+  }
+}
+
