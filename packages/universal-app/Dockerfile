@@ -1,8 +1,5 @@
 FROM node:10.14.2-alpine
 
-COPY . .
+COPY ./dist/universal-app.js universal-app.js
 
-RUN npm install
-RUN npm run build:ssr
-
-CMD node dist/universal-app.js
+CMD node universal-app.js
