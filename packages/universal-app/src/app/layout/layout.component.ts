@@ -46,7 +46,9 @@ export class LayoutComponent implements OnInit {
   }
 
   private initRouterAnimations(): void {
-    this.enterAnimationState = 'visible';
+    if (isPlatformBrowser(this.platformId)) {
+      this.enterAnimationState = 'visible';
+    }
 
     this.routingService.getRoutingStatus()
       .subscribe((status) => {
