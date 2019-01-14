@@ -6,6 +6,7 @@ $content-border-radius: 20px;
 }
 
 .avatar {
+  outline: none;
   width: 48px;
   height: 48px;
   border-radius: 24px;
@@ -55,6 +56,16 @@ $content-border-radius: 20px;
     font-size: 13px;
     & > div {
       padding: 9.5px 15px 9.5px 15px;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .content {
+    ul {
+      margin: 0;
+      padding-left: 15px;
+      list-style-type: circle;
     }
   }
 }
@@ -154,7 +165,7 @@ $content-border-radius: 20px;
       }
     }
   }
-  &:not(.command) {
+  &:not(.commands) {
     .content {
       font-weight: 400;
     }
@@ -165,6 +176,7 @@ $content-border-radius: 20px;
       transition: opacity .3s ease-in;
       & > div {
         padding: 24px 16px 16px 24px;
+        background: rgba(28, 31, 31, 0.6);
       }
     }
   }

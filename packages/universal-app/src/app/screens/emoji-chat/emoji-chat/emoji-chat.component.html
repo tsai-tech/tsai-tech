@@ -1,11 +1,10 @@
 <header>
-  <a routerLink="/"
+  <button routerLink="/"
     color="accent"
-    mat-raised-button
     matTooltip="Go to home page"
     [matTooltipPosition]="'right'">
     <mat-icon aria-label="Go to home page">arrow_back</mat-icon>
-  </a>
+  </button>
   <div class="title">
     <h2>
       Emoji Chat
@@ -14,12 +13,11 @@
   </div>
   <div class="edit-emoji">
     😀
-    <a routerLink="/"
-      mat-raised-button
+    <button
       matTooltip="Edit your Emoji"
       [matTooltipPosition]="'below'">
       Edit your Emoji
-    </a>
+    </button>
   </div>
 </header>
 

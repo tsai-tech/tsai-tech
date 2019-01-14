@@ -21,5 +21,6 @@ export enum Commands {
   Welcome = 'Welcome',
   FavoriteTechnologyStack = 'FavoriteTechnologyStack',
   GetInTouch = 'GetInTouch',
-  ComingSoon = 'ComingSoon'
+  ComingSoon = 'ComingSoon',
+  DemoExamples = 'DemoExamples'
 }

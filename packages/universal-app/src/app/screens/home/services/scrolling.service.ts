@@ -24,9 +24,9 @@ export class ScrollingService {
   /**
    * Call this method just before scenarioService.history changes
    */
-  scrollChatIfNeed(): void {
+  scrollChatIfNeed(parent: number): void {
     if (this.doesItNeedToScroll()) {
-      this.scrollChat();
+      this.scrollChat(parent);
     }
   }
 
@@ -39,22 +39,30 @@ export class ScrollingService {
     return false;
   }
 
-  scrollChat(): void {
+  scrollChat(parent?: number): void {
     if (this.scrollbar && this.scrollbar.view) {
       Promise.resolve().then(() => {
         this.scrollbar.update();
 
         setTimeout(() => {
           const { clientHeight, scrollHeight, scrollTop } = this.scrollbar.view;
-          const newScrollTop = scrollHeight - clientHeight;
+          const parentElement: HTMLElement = parent
+            ? document.querySelector(`.history-${parent}`)
+            : null;
+          const scrollLimit = scrollHeight - clientHeight;
+          const newScrollTop = parentElement && parentElement.offsetTop < scrollLimit
+            ? parentElement.offsetTop
+            : scrollLimit;
+
           let top = scrollTop;
 
           if (newScrollTop > top) {
             requestAnimationFrame(() => {
               const diff = newScrollTop - top;
+
               top += diff > 20 ? diff / 1.5 : diff;
               this.scrollbar.scrollTo({ top });
-              this.scrollChat();
+              this.scrollChat(parent);
             });
           }
         }, 0);

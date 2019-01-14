@@ -13,7 +13,10 @@
     welcome: welcome,
     'message-for-next-group': messageForNextGroup
   }">
-  <div class="avatar" #avatar [ngStyle]="{
+  <div #avatar
+    class="avatar"
+    [routerLink]="sender === Sender.User ? '/emoji-chat' : null"
+    [ngStyle]="{
     backgroundPosition: (sender === Sender.User && avatarBackgroundPosition)
       ? avatarBackgroundPosition[0] + 'px ' + avatarBackgroundPosition[1] + 'px'
       : null,

@@ -3,7 +3,9 @@ import { Sender, Type, ContentType } from './enums';
 
 export interface History {
   sender: Sender;
-
+  uuid?: number;
+  isParent?: boolean;
+  parentUUID?: number;
   loading?: boolean;
   contentType?: ContentType;
   content?: any;

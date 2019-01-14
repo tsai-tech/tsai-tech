@@ -1,22 +1,27 @@
 import { Commands } from './../../types/enums';
 import { History } from './../../types/History';
 import { generateIds } from './generate-ids';
-import { welcome } from './welcome';
-import { favoriteTechnologyStack } from './favorite-technology-stack';
-import { getInTouch } from './get-in-touch';
-import { comingSoon } from './coming-soon';
-import { isPlatformBrowser } from '@angular/common';
+import {
+  welcome,
+  getInTouch,
+  comingSoon,
+  favoriteTechnologyStack,
+  demoExamples
+} from './lists';
+
 
 export const textsOfCommands: { [key in keyof typeof Commands]?: string } = {
   FavoriteTechnologyStack: 'Favorite technology stack',
+  DemoExamples: 'Demo examples',
   GetInTouch: 'Get in touch',
-  ComingSoon: 'Coming soon...'
+  ComingSoon: 'Coming soon'
 };
 const scenarioByCommands: { [key in keyof typeof Commands]: any } = {
   Welcome: welcome,
   FavoriteTechnologyStack: favoriteTechnologyStack,
   GetInTouch: getInTouch,
-  ComingSoon: comingSoon
+  ComingSoon: comingSoon,
+  DemoExamples: demoExamples,
 };
 const scenarioArrays = Object.keys(scenarioByCommands).map(key => scenarioByCommands[key]);
 const scenario: History[] = generateIds([].concat.apply([], scenarioArrays));
@@ -33,7 +38,7 @@ function calculateIds(): { [key in string]: number } {
     }, {});
 }
 
-export function getScenario(commandOrId: Commands | number, platformId): History {
+export function getScenario(commandOrId: Commands | number): History {
 
   const id =
     typeof commandOrId === 'number'
@@ -45,11 +50,5 @@ export function getScenario(commandOrId: Commands | number, platformId): History
       .filter(item => item.id === id)
       .reduce(a => a);
 
-  return {
-    ...result,
-    ...(isPlatformBrowser(platformId) ? {} : {
-      timeout: 0,
-      startTimeout: 0
-    })
-  };
+  return { ...result };
 }

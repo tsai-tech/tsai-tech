@@ -147,12 +147,6 @@ export class EmojiChatComponent implements OnInit {
 
     let userId = 0;
 
-    console.log({
-      padding,
-      size,
-      height
-    });
-
     for (let y = padding + (size / 2); y <= height - padding && userId < length; y += yStep) {
       for (let x = padding + (size / 2); x <= width - padding && userId < length; x += xStep) {
         const max = size * 1.7;

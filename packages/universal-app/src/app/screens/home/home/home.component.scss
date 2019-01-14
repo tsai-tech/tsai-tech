@@ -19,46 +19,6 @@ main {
   }
 }
 
-mat-divider {
-  margin: 15px 0;
-}
-
-mat-card {
-  mat-card-content {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  &:not(:last-child) {
-    max-width: 450px;
-    padding-right: 10px;
-  }
-
-  a[mat-raised-button]:not(:last-child) {
-    margin-right: 15px;
-    margin-bottom: 15px;
-  }
-
-  .button-wrapper {
-    margin-bottom: -15px;
-    padding: 10px 15px;
-  }
-
-  &:not(:first-child):not(:last-child) {
-    margin-top: 20px;
-  }
-
-  border-radius: 25px;
-
-  &.bot {
-    border-bottom-left-radius: 0px;
-  }
-  &.user {
-    align-self: flex-end;
-    border-bottom-right-radius: 0px;
-  }
-}
-
 .question {
   background: rgba(255,255,255,1);
   border-radius: 25px;

@@ -16,7 +16,8 @@
           [date]="item.date"
           [isCommands]="item.contentType === ContentType.Commands"
           #questionWrapper
-          *ngIf="index + 1 > history.length - 15"
+          [class]="'history-' + item.uuid"
+          *ngIf="index + 1 > history.length - 25"
         >
           <ng-container *ngIf="item.contentType !== ContentType.Commands">
             <ng-container *ngTemplateOutlet="contentBlock; context: item"></ng-container>
@@ -26,6 +27,10 @@
             <app-f-button [wrapper]="getWrapper(questionWrapper)" [subscribeTo]="scroll$"
                           (click)="onCommand(Commands.FavoriteTechnologyStack, item)">
               {{ textsOfCommands[Commands.FavoriteTechnologyStack] }}
+            </app-f-button>
+            <app-f-button [wrapper]="getWrapper(questionWrapper)" [subscribeTo]="scroll$"
+                          (click)="onCommand(Commands.DemoExamples, item)">
+              {{ textsOfCommands[Commands.DemoExamples] }}
             </app-f-button>
             <app-f-button [wrapper]="getWrapper(questionWrapper)" [subscribeTo]="scroll$"
                           (click)="onCommand(Commands.GetInTouch, item)">

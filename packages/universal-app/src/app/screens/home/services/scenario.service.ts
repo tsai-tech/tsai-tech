@@ -12,6 +12,7 @@ const MESSAGE_GROUP_DIFF = 1500;
 @Injectable()
 export class ScenarioService {
   private history: History[] = [];
+  private counter = 1;
 
   constructor(
     private scrolling: ScrollingService,
@@ -19,7 +20,7 @@ export class ScenarioService {
   ) { }
 
   init(): void {
-    if (this.history.length === 0) {
+    if (isPlatformBrowser(this.platformId) && this.history.length === 0) {
       this.newScenarioHistory(Commands.Welcome);
     }
   }
@@ -42,7 +43,7 @@ export class ScenarioService {
   }
 
   private newScenarioHistory(commandOrId: Commands | number) {
-    const scenario = getScenario(commandOrId, this.platformId);
+    const scenario = getScenario(commandOrId);
 
     if (scenario.sender === Sender.Bot) {
       this.newHistoryFromBot(scenario);
@@ -52,14 +53,13 @@ export class ScenarioService {
   }
 
   private newHistoryFromBot(scenario): void {
+    const link = this.startTyping(scenario);
     const {
       timeout = 0,
       startTimeout = 0,
       autoNext,
       ...convertedHistory
     } = scenario;
-
-    const link = this.startTyping(convertedHistory.id, startTimeout, timeout);
 
     setTimeout(() => {
       if (this.history.length === 1) {
@@ -76,14 +76,19 @@ export class ScenarioService {
     }, timeout);
   }
 
-  private startTyping(id: number, startTimeout: number, timeout: number): History {
+  private startTyping({ id, startTimeout, timeout, isParent }: History): History {
     const previous = this.history.slice().reverse().find(item => !item.loading);
     const history: History = {
       id,
+      uuid: this.counter++,
       sender: Sender.Bot,
       type: Type.Alone,
       loading: true
     };
+
+    if (!isParent && previous && previous.sender === Sender.Bot) {
+      history.parentUUID = previous.parentUUID || previous.uuid;
+    }
 
     if (this.history.length === 0) {
       history.welcome = true;
@@ -105,20 +110,22 @@ export class ScenarioService {
       history.messageForNextGroup = true;
     }
 
-    this.scrolling.scrollChatIfNeed();
+    this.scrolling.scrollChatIfNeed(history.parentUUID || history.uuid);
 
     this.history.push(history);
   }
 
   private endTyping(link: History, history: History, timeout: number) {
+    const previous = this.history[this.history.indexOf(link) - 1];
+
     delete link.messageForNextGroup;
     delete link.loading;
 
-    this.scrolling.scrollChatIfNeed();
+    const parent = link.parentUUID || link.uuid;
+
+    this.scrolling.scrollChatIfNeed(parent);
 
     Object.keys(history).forEach(key => link[key] = history[key]);
-
-    const previous = this.history[this.history.indexOf(link) - 1];
 
     if (previous && link.sender === previous.sender && timeout <= MESSAGE_GROUP_DIFF) {
       link.type = Type.Last;
@@ -126,6 +133,9 @@ export class ScenarioService {
   }
 
   private newHistory(history: History): History {
+    if (history.uuid) {
+      history.uuid = this.counter++;
+    }
     history.type = Type.Alone;
     history.date = new Date();
 

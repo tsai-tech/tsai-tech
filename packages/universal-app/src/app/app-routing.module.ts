@@ -42,6 +42,10 @@ const routes: Routes = [
         data: {
           animation: 'RightPage'
         }
+      },
+      {
+        path: '**',
+        redirectTo: ''
       }
     ]
   }
