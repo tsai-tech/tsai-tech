@@ -2,6 +2,8 @@ version: '3'
 services:
   balancer:
     build: ./packages/balancer
+    volumes:
+      - /var/log/nginx/balancer/:/var/log/nginx/
     ports:
       - "80:80"
   universal-app:
