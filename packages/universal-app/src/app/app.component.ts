@@ -18,10 +18,16 @@ export class AppComponent implements OnInit {
   ) {}
 
   private initOnlyForBrowser(): void {
-    window.addEventListener('beforeinstallprompt', (event) => {
+    window.addEventListener('beforeinstallprompt', (event: any) => {
       event.preventDefault();
+
       this.pwaInstaller = event;
-      this.pwaInstaller.prompt();
+
+      setTimeout(() => {
+        this.pwaInstaller.prompt()
+          .then(console.log)
+          .catch(console.error);
+      }, 5000);
     });
   }
 
