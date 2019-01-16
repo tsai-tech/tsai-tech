@@ -1,10 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
 import * as webix from 'webix';
 
 import { NgLazyServicesLoaderService } from 'ng-lazy-services';
 
 import { D3Service } from 'src/app/dynamic/d3/service/d3.service';
 import { DynamicModule } from 'src/app/dynamic/dynamic-modules';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -18,12 +19,31 @@ export class DndAndPwaComponent implements OnInit, OnDestroy {
   private tree: webix.ui.datatable;
 
   constructor(
-    private loader: NgLazyServicesLoaderService
+    private loader: NgLazyServicesLoaderService,
+    @Inject(PLATFORM_ID) private platformId,
   ) {
 
   }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeWebixTree();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.tree) {
+      this.tree.destructor();
+    }
+  }
+
+  loadD3() {
+    this.loader.load<D3Service>(DynamicModule.D3).subscribe((d3Service) => {
+      // d3Service.init();
+    });
+  }
+
+  private initializeWebixTree(): void {
     this.tree = <webix.ui.datatable> webix.ui({
       container: this.div.nativeElement,
       view: 'tree',
@@ -84,16 +104,6 @@ export class DndAndPwaComponent implements OnInit, OnDestroy {
       const item = (this.tree as any).getNextSiblingId(id);
 
       console.log(item);
-    });
-  }
-
-  ngOnDestroy() {
-    this.tree.destructor();
-  }
-
-  loadD3() {
-    this.loader.load<D3Service>(DynamicModule.D3).subscribe((d3Service) => {
-      // d3Service.init();
     });
   }
 
