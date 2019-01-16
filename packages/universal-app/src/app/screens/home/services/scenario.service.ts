@@ -20,7 +20,7 @@ export class ScenarioService {
   ) { }
 
   init(): void {
-    if (isPlatformBrowser(this.platformId) && this.history.length === 0) {
+    if (this.history.length === 0) {
       this.newScenarioHistory(Commands.Welcome);
     }
   }

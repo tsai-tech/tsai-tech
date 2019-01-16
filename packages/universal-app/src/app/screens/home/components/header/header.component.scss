@@ -1,9 +1,13 @@
+:host {
+  outline: none;
+}
 
 header {
   display: flex;
   margin-bottom: 0;
   padding: 35px;
   background: rgba(28, 31, 31, 0.6);
+
   @media screen and (max-width: 480px) {
     padding: 15px;
   }
