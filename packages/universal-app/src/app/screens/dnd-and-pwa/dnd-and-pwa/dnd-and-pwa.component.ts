@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
-// import * as webix from 'webix';
 
 import { NgLazyServicesLoaderService } from 'ng-lazy-services';
 
@@ -7,6 +6,7 @@ import { D3Service } from 'src/app/dynamic/d3/service/d3.service';
 import { DynamicModule } from 'src/app/dynamic/dynamic-modules';
 import { isPlatformBrowser } from '@angular/common';
 
+declare const webix: any;
 
 @Component({
   selector: 'app-dnd-and-pwa',
@@ -16,7 +16,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class DndAndPwaComponent implements OnInit, OnDestroy {
   @ViewChild('div') div: ElementRef;
 
-  // private tree: webix.ui.datatable;
+  private tree;
 
   constructor(
     private loader: NgLazyServicesLoaderService,
@@ -32,9 +32,9 @@ export class DndAndPwaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // if (this.tree) {
-    //   this.tree.destructor();
-    // }
+    if (this.tree) {
+      this.tree.destructor();
+    }
   }
 
   loadD3() {
@@ -44,67 +44,69 @@ export class DndAndPwaComponent implements OnInit, OnDestroy {
   }
 
   private initializeWebixTree(): void {
-    // this.tree = <webix.ui.datatable> webix.ui({
-    //   container: this.div.nativeElement,
-    //   view: 'tree',
-    //   select: true,
-    //   multiselect: true,
-    //   drag: true,
-    //   height: 500,
-    //   data: {
-    //     id: 'root',
-    //     value: 'Cars',
-    //     open: true,
-    //     data: [
-    //       {
-    //         id: '1',
-    //         open: true,
-    //         value: 'title 1',
-    //         data: [
-    //           { id: '1.1', value: 'title 1.1' },
-    //           { id: '1.2', value: 'title 1.2' },
-    //           { id: '1.3', value: 'title 1.3' }
-    //         ]
-    //       },
-    //       {
-    //         id: '2',
-    //         value: 'title 2',
-    //         open: true,
-    //         data: [
-    //           { id: '2.1', value: 'title 2.1' },
-    //           {
-    //             id: '2.2',
-    //             value: 'title 2.2',
-    //             data: [
-    //               { id: '2.2.1', value: 'title 2.2.1' },
-    //               { id: '2.2.2', value: 'title 2.2.2' },
-    //               { id: '2.2.3', value: 'title 2.2.3' }
-    //             ]
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   }
-    // });
+    console.log('webix', webix);
+
+    this.tree = webix.ui({
+      container: this.div.nativeElement,
+      view: 'tree',
+      select: true,
+      multiselect: true,
+      drag: true,
+      height: 500,
+      data: {
+        id: 'root',
+        value: 'Cars',
+        open: true,
+        data: [
+          {
+            id: '1',
+            open: true,
+            value: 'title 1',
+            data: [
+              { id: '1.1', value: 'title 1.1' },
+              { id: '1.2', value: 'title 1.2' },
+              { id: '1.3', value: 'title 1.3' }
+            ]
+          },
+          {
+            id: '2',
+            value: 'title 2',
+            open: true,
+            data: [
+              { id: '2.1', value: 'title 2.1' },
+              {
+                id: '2.2',
+                value: 'title 2.2',
+                data: [
+                  { id: '2.2.1', value: 'title 2.2.1' },
+                  { id: '2.2.2', value: 'title 2.2.2' },
+                  { id: '2.2.3', value: 'title 2.2.3' }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
 
 
-    // this.tree.resize();
+    this.tree.resize();
 
-    // this.tree.attachEvent('onBeforeDrag', function (context) {
-    //   if (this.getItem(context.target) && this.getItem(context.target).$count && this.getItem(context.target).open) {
-    //     context.parent = context.target;
-    //     context.index = 0;
-    //   } else {
-    //     context.index++;
-    //   }
-    // });
+    this.tree.attachEvent('onBeforeDrag', function (context) {
+      if (this.getItem(context.target) && this.getItem(context.target).$count && this.getItem(context.target).open) {
+        context.parent = context.target;
+        context.index = 0;
+      } else {
+        context.index++;
+      }
+    });
 
-    // this.tree.attachEvent('onItemClick', (id, e, node) => {
-    //   console.log(this.tree.getItem(id));
-    //   const item = (this.tree as any).getNextSiblingId(id);
+    this.tree.attachEvent('onItemClick', (id, e, node) => {
+      console.log(this.tree.getItem(id));
+      const item = (this.tree as any).getNextSiblingId(id);
 
-    //   console.log(item);
-    // });
+      console.log(item);
+    });
   }
 
 }
