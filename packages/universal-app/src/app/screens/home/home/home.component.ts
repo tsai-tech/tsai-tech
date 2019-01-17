@@ -49,7 +49,11 @@ export class HomeComponent implements OnInit {
   onCommand(command: Commands, from: History) {
     this.scenario.command(command, from);
 
-    this.googleAnalytics('send', command);
+    this.googleAnalytics('send', {
+      hitType: 'event',
+      eventCategory: 'Chat command',
+      eventAction: command
+    });
   }
 
   getWrapper(wrapper): HTMLElement {
