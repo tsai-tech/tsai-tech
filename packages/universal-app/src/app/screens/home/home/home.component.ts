@@ -7,7 +7,7 @@ import { Sender, Type, ContentType, Commands } from '../types/enums';
 import { History } from '../types/History';
 import { NgScrollbar } from 'ngx-scrollbar';
 
-declare const googleAnalytics: any;
+declare const ga: any;
 
 @Component({
   selector: 'app-home',
@@ -15,6 +15,8 @@ declare const googleAnalytics: any;
   styleUrls: ['./home.component.scss', '../../screens-style.scss']
 })
 export class HomeComponent implements OnInit {
+  private googleAnalytics = ga;
+
   readonly Sender = Sender;
   readonly Type = Type;
   readonly ContentType = ContentType;
@@ -47,7 +49,7 @@ export class HomeComponent implements OnInit {
   onCommand(command: Commands, from: History) {
     this.scenario.command(command, from);
 
-    googleAnalytics('send', command);
+    this.googleAnalytics('send', command);
   }
 
   getWrapper(wrapper): HTMLElement {
