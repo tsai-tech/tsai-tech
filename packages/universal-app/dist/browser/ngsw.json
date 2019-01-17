@@ -8,7 +8,7 @@
       "updateMode": "prefetch",
       "urls": [
         "/0.fc6712167ec39fedae7b.js",
-        "/10.9d84afd2eb4029cc8f20.js",
+        "/10.491e1fb2cdee0eb94fe3.js",
         "/2.cc83612341197c605af8.js",
         "/6.aaaf6dbeb360a3c37630.js",
         "/7.e7b0d631f91d91bbc317.js",
@@ -19,7 +19,7 @@
         "/main.2ee575266f6795defa9b.js",
         "/manifest.json",
         "/polyfills.e7d0445067bbcaa529e1.js",
-        "/runtime.8e495ec8d322bf82c0d8.js",
+        "/runtime.71e89048ba893418c998.js",
         "/styles.30c784c6de1f80678ebc.css"
       ],
       "patterns": []
@@ -55,7 +55,7 @@
   "dataGroups": [],
   "hashTable": {
     "/0.fc6712167ec39fedae7b.js": "2e822f99084cf4af333fc5b9424f29df5a2296dd",
-    "/10.9d84afd2eb4029cc8f20.js": "826b87483a53e31219a3ac0ed9a951924c0de0c6",
+    "/10.491e1fb2cdee0eb94fe3.js": "3bdc767cea3cc07aca04ecaf73d9a5ef3d325458",
     "/2.cc83612341197c605af8.js": "4809f56e66406bed795864a7d183b4bb759da1cd",
     "/6.aaaf6dbeb360a3c37630.js": "3f32b3d9eed9382aac56dba0e7c9fa7a79087011",
     "/7.e7b0d631f91d91bbc317.js": "5d920aceafb770af9e5170be70e7d121fb74f97b",
@@ -78,11 +78,11 @@
     "/assets/person.svg": "140b23928bfc9610348396b05a70009ea2229f03",
     "/assets/photos/mikhail-tsai.jpg": "67bd258bba08d339af44b0b30622a948707f4350",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "89e324805fd098efae92ca3420df6bba9154afa1",
+    "/index.html": "e83333a1f4d8978b12a58af020bc1b6c713b982f",
     "/main.2ee575266f6795defa9b.js": "3345069175a1da6ce5c44dd7ef09de04d1ceed8d",
     "/manifest.json": "2f1077662810678e9c084725a64879b1b84930ef",
     "/polyfills.e7d0445067bbcaa529e1.js": "7e0a772b9d0594e6803ac761c785e26e3bba1e3c",
-    "/runtime.8e495ec8d322bf82c0d8.js": "75591c4b895323adbfe3c3ca4b740aea50b652c8",
+    "/runtime.71e89048ba893418c998.js": "7c2d0bef1a4a3de742bc0877f028c6aa0fe417d3",
     "/styles.30c784c6de1f80678ebc.css": "85203704cc4fe8e0585c9cad1d7eb90be8017b99"
   },
   "navigationUrls": [
