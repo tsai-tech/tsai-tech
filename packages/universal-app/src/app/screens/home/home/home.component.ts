@@ -6,7 +6,8 @@ import { textsOfCommands } from './../services/scenario';
 import { Sender, Type, ContentType, Commands } from '../types/enums';
 import { History } from '../types/History';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { Command } from 'selenium-webdriver';
+
+declare const googleAnalytics: any;
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(NgScrollbar) scrollbar: NgScrollbar;
   @ViewChild('section') private section: ElementRef<HTMLElement>;
+
   questions: any[] = [];
 
   get history(): History[] {
@@ -44,6 +46,8 @@ export class HomeComponent implements OnInit {
 
   onCommand(command: Commands, from: History) {
     this.scenario.command(command, from);
+
+    googleAnalytics('send', command);
   }
 
   getWrapper(wrapper): HTMLElement {
