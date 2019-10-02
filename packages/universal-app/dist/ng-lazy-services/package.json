@@ -1,0 +1,21 @@
+{
+  "name": "ng-lazy-services",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
+  },
+  "main": "bundles/ng-lazy-services.umd.js",
+  "module": "fesm5/ng-lazy-services.js",
+  "es2015": "fesm2015/ng-lazy-services.js",
+  "esm5": "esm5/ng-lazy-services.js",
+  "esm2015": "esm2015/ng-lazy-services.js",
+  "fesm5": "fesm5/ng-lazy-services.js",
+  "fesm2015": "fesm2015/ng-lazy-services.js",
+  "typings": "ng-lazy-services.d.ts",
+  "metadata": "ng-lazy-services.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
